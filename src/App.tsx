@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Form } from "./components/Form";
 import { Header } from "./components/Header";
+import { List } from "./components/List";
 
-type Task = {
+export type Task = {
   id: number;
   title: string;
   isComplete: boolean;
@@ -21,7 +22,7 @@ export function App() {
 
     const newTasks = [...tasks, task];
     setTasks(newTasks);
-    console.log(tasks);
+    setTitle("");
   }
 
   return (
@@ -32,6 +33,11 @@ export function App() {
         setTitle={setTitle}
         handleCreateTasks={handleCreateTask}
       />
+      {tasks.map((task) => (
+        <ul>
+          <List task={task} />
+        </ul>
+      ))}
     </>
   );
 }
